@@ -1,0 +1,41 @@
+type Team {
+    id: Int!
+    name: String
+}
+
+input TeamAdd {
+    id: Int!
+    name: String!
+}
+
+enum PlayerPositionType {
+    PG,
+    SG,
+    SF,
+    PF,
+    C
+}
+
+input CreatePlayerRequest {
+    name: String!,
+    surname: String!,
+    positionType: PlayerPositionType!,
+    team: TeamAdd!
+}
+
+type PlayerDto {
+    name: String,
+    surname: String,
+    position: PlayerPositionType,
+    team: Team
+}
+
+type Query {
+    getAll: [PlayerDto]
+    getByName(name: String): PlayerDto
+}
+
+type Mutation {
+    save(request: CreatePlayerRequest): PlayerDto
+    deleteByName(name: String): PlayerDto
+}
