@@ -23,4 +23,11 @@ public class Player {
     private PlayerPositionType positionType;
     @ManyToOne(fetch = FetchType.EAGER)
     private Team team;
+
+    public Player(String name, String surname, PlayerPositionType positionType, Team team) {
+        this.name = name;
+        this.surname = surname;
+        this.positionType = positionType;
+        this.team = team;
+    }
 }

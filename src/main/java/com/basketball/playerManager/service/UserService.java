@@ -19,10 +19,9 @@ public class UserService {
     private final UserDtoConverter userDtoConverter;
 
     public UserDto save(CreateUserRequest request) {
-        User user = new User();
-        user.setUserName(request.getUserName());
-        user.setPassword(request.getPassword());
-        user.setMail(request.getMail());
+        User user = new User(request.getUserName(),
+                request.getPassword(),
+                request.getMail());
 
         return userDtoConverter.convert(userRepository.save(user));
     }

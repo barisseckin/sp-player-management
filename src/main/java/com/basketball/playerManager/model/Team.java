@@ -19,4 +19,8 @@ public class Team {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String name;
+
+    public Team(String name) {
+        this.name = name;
+    }
 }

@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -23,8 +22,7 @@ public class TeamService {
     private final TeamDtoConverter teamDtoConverter;
 
     public TeamDto save(CreateTeamRequest request) {
-        Team team = new Team();
-        team.setName(request.getName());
+        Team team = new Team(request.getName());
 
         return teamDtoConverter.convert(teamRepository.save(team));
     }
@@ -37,7 +35,7 @@ public class TeamService {
             return teamDtoConverter.convert(team.get());
         }
         else {
-            throw  new NotFoundException("Team not found, name: " + name);
+            throw new NotFoundException("Team not found, name: " + name);
         }
     }
 

@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.UUID;
 
 @Service
 @RequiredArgsConstructor
@@ -23,15 +22,13 @@ public class PlayerService {
     private final PlayerDtoConverter playerDtoConverter;
 
     public PlayerDto save(CreatePlayerRequest request) {
-        Player player = new Player();
-        player.setName(request.getName());
-        player.setSurname(request.getSurname());
-        player.setPositionType(request.getPositionType());
-        player.setTeam(request.getTeam());
+        Player player = new Player(request.getName(),
+                request.getSurname(),
+                request.getPositionType(),
+                request.getTeam());
 
         if (playerRepository.findAll().size() < 12) {
-            playerRepository.save(player);
-            return playerDtoConverter.convert(player);
+            return playerDtoConverter.convert(playerRepository.save(player));
         }
 
         return null;
