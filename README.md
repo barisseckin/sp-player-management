@@ -1,7 +1,7 @@
 # sp-player-management
 <p>Technologies used in the construction of the project</p>
 <ul>
-  <li>JDK-18</li>
+  <li>JDK-11</li>
   <li>Spring Boot</li>
   <li>GraphQL</li>
   <li>MySQL Database</li>
